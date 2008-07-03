@@ -34,6 +34,7 @@ class Hexy
   #   puts p.to_s
   #
   #   b = Hexy.new "\x00\x01\x03(...)", :numbering=>:none, :format=>:fours
+  #   puts p.to_s
   #            
   def initialize bytes, config = {}
     @bytes     = bytes
