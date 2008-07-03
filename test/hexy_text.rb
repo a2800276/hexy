@@ -13,6 +13,13 @@ class TestHexy < Test::Unit::TestCase
   def setup
   end
   
+  def test_class_meth
+    bytes = "\123\234\345\456\123\321\012"
+    h = Hexy.new bytes
+
+    assert_equal h.to_s, Hexy.dump(bytes,{}) 
+
+  end 
   def test_dump
         b = Hexy.new "abc"
         assert_equal %Q(0000000: 61 62 63                                           abc

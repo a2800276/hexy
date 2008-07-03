@@ -1,8 +1,10 @@
 
 
 class Hexy
-
-  attr_accessor :numbering
+  
+  def self.dump bytes, config={}
+    Hexy.new(bytes, config).to_s
+  end
   
   #
   # Constructor is passed the bytes to format as a hex dump and
