@@ -15,6 +15,11 @@ class Hexy
   # [:+format+]     currently supported are :+twos+ (every two hex digits are separated by a space, default), :+fours+ or :+none+
   # [:+case+]       :+upper+ or :+lower+, default :+lower+
   # [:+annotate+]   :+ascii+ or :+none+, default :+ascii+
+  # [:+prefix+]     a prefix to include literally in front of each line, default ""
+  # [:+indent+]     number of spaces to prefix in front of each line, default 0
+  #
+  # 
+  #
   #
   #
   # ==Examples
@@ -50,6 +55,9 @@ class Hexy
               end
     @case      = config[:case]      == :upper ? :upper: :lower
     @annotate  = config[:annotate]  == :none  ? :none : :ascii
+    @prefix    = config[:prefix]    ||= ""
+    @indent    = config[:indent]    ||= 0
+    1.upto(@indent) {@prefix += " "}
   end
 
   def to_s
@@ -86,6 +94,7 @@ class Hexy
               else
                 @width *2
             end  
+      str << @prefix
       str << "%07X: " % (i) if @numbering == :hex_bytes 
       str << ("%-#{len}s" % hex)
       str << " #{string}" if @annotate == :ascii

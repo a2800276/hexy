@@ -110,4 +110,18 @@ class TestHexy < Test::Unit::TestCase
         b = Hexy.new("\000\001\003\005\037\012\011bcdefghijklmnopqrstuvwxyz0123456789", :numbering=>:hex_bytes, :width=>32)
         assert_equal %Q(0000000: 00 01 03 05 1f 0a 09 62 63 64 65 66 67 68 69 6a   6b 6c 6d 6e 6f 70 71 72 73 74 75 76 77 78 79 7a  .......bcdefghij klmnopqrstuvwxyz \n0000020: 30 31 32 33 34 35 36 37 38 39                                                                      0123456789\n\n), b.to_s
   end
+
+  def test_prefix_indent
+    b = Hexy.new("\000\001\003\005\037\012\011bcdefghijklmnopqrstuvwxyz0123456789", 
+                  :numbering=>:hex_bytes, 
+                  :width=> 8, 
+                  :format=>:fours,
+                  :prefix=>"yo! :"
+                 )
+    assert_equal %Q(yo! :0000000: 0001 0305 1f0a 0962  .... ...b \nyo! :0000008: 6364 6566 6768 696a  cdef ghij \nyo! :0000010: 6b6c 6d6e 6f70 7172  klmn opqr \nyo! :0000018: 7374 7576 7778 797a  stuv wxyz \nyo! :0000020: 3031 3233 3435 3637  0123 4567 \nyo! :0000028: 3839                 89\n\n), b.to_s
+
+    b = Hexy.new "\000\001\003\005\037\012\011bcdefghijklmnopqrstuvwxyz0123456789", :annotate=>:none, :indent=>4
+    assert_equal %Q(    0000000: 00 01 03 05 1f 0a 09 62   63 64 65 66 67 68 69 6a \n    0000010: 6b 6c 6d 6e 6f 70 71 72   73 74 75 76 77 78 79 7a \n    0000020: 30 31 32 33 34 35 36 37   38 39                   \n\n), b.to_s
+
+  end
 end
