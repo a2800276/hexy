@@ -82,7 +82,7 @@ class Hexy
         }
       end
 
-      string.gsub!(/[\000-\037]/, ".")
+      string.gsub!(/[\000-\040\177-\377]/, ".")
       string.gsub!(/(.{#{@width/2}})/) { |m|
         m+" "
       }

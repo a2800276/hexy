@@ -9,7 +9,7 @@ require "rubygems"
 
 SHORTNAME	='hexy'	# this should be the rubyforge project name
 DESC		='Utility for hexdumps'
-PKG_VERSION 	='0.0.2'
+PKG_VERSION 	='0.0.3'
 LONG_DESC	= <<END_DESC
 	This is a short project description.
 END_DESC
