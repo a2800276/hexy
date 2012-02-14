@@ -1,0 +1,5 @@
+* Unit Tests
+* Utility to call hexy from the command line not just as a lib
+* More line numbering options (line numbers)
+* character encodings for right hand side
+* import of hexdumps (?)
