@@ -9,7 +9,7 @@ require "rubygems"
 
 SHORTNAME	='hexy'	# this should be the rubyforge project name
 DESC		='Utility for hexdumps'
-PKG_VERSION 	='0.1.0'
+PKG_VERSION 	='0.1.2'
 LONG_DESC	= <<END_DESC
 	This is a short project description.
 END_DESC
@@ -71,6 +71,9 @@ end
 PKG_FILES 	= FileList['lib/**/*.rb', 'bin/**/*', 'examples/**/*', '[A-Z]*', 'test/**/*'].to_a
 
 spec = Gem::Specification.new do |s|
+  s.author = "Tim Becker"
+  s.email = "tim@kuriositaet.de"
+  s.homepage = "https://github.com/a2800276/hexy"
 	s.platform = Gem::Platform::RUBY
 	s.summary = "#{SHORTNAME}: #{DESC}"
 	s.name = SHORTNAME
