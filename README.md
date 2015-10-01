@@ -8,8 +8,8 @@ how the hex dumb will end up looking.
 
 It should create a pleasant looking hex dumb by default:
 
-   b = Hexy.new "\000\001\003\005\037\012\011bcdefghijklmnopqrstuvwxyz0123456789"
-   puts b.to_s
+	b = Hexy.new "\000\001\003\005\037\012\011bcdefghijklmnopqrstuvwxyz0123456789"
+	puts b.to_s
 
 results in this dump:
 
@@ -45,11 +45,8 @@ with hexy!
 
 ## Installing
 
-Having a "Installing" section is a bit of a chicken or egg question.
-Someone reading this README has, in all likelyhood already installed the
-package. 
 
- You can install the +hexy+ package by executing:
+You can install the +hexy+ package by executing:
 
 	gem install hexy 
 
