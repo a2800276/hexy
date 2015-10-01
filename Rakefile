@@ -1,15 +1,21 @@
-require "rake/rdoctask"
-require "rake/gempackagetask"
+require "rdoc/task"
+require "rubygems/package_task"
 require "rake/testtask"
 require "rake/clean"
 require "rubygems"
+
+
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+require "hexy"
+
 
 # Some definitions that you'll need to edit in case you reuse this
 # Rakefile for your own project.
 
 SHORTNAME	='hexy'	# this should be the rubyforge project name
 DESC		='Utility for hexdumps'
-PKG_VERSION 	='0.1.2'
+PKG_VERSION 	= Hexy::VERSION
 LONG_DESC	= <<END_DESC
 	This is a short project description.
 END_DESC
@@ -18,7 +24,7 @@ RUBYFORGE_USER	='a2800276'
 # Specifies the default task to execute. This is often the "test" task
 # and we'll change things around as soon as we have some tests.
 
-task  :default => [:rdoc]
+task  :default => [:test]
 
 # The directory to generate +rdoc+ in.
 RDOC_DIR="doc/html"
@@ -86,7 +92,7 @@ end
 
 # Adding a new GemPackageTask adds a task named `package`, which generates
 # packages as gems, tarball and zip archives.
-Rake::GemPackageTask.new(spec) do |pkg|
+Gem::PackageTask.new(spec) do |pkg|
 	pkg.need_zip = true
 	pkg.need_tar_gz = true
 end
@@ -102,16 +108,16 @@ end
 # Windows. I'm currently not aware of any pure ruby way to do scp
 # transfers.
 
-RubyForgeProject=SHORTNAME
-
-desc "Upload the web pages to the web."
-task :upload_pages => ["rdoc"] do
-  if RubyForgeProject then
-    path = "/var/www/gforge-projects/#{RubyForgeProject}"
-    sh "scp -r doc/html/* #{RUBYFORGE_USER}@rubyforge.org:#{path}"
-    sh "scp doc/images/*.png #{RUBYFORGE_USER}@rubyforge.org:#{path}/images"
-  end
-end
+# RubyForgeProject=SHORTNAME
+# 
+# desc "Upload the web pages to the web."
+# task :upload_pages => ["rdoc"] do
+#   if RubyForgeProject then
+#     path = "/var/www/gforge-projects/#{RubyForgeProject}"
+#     sh "scp -r doc/html/* #{RUBYFORGE_USER}@rubyforge.org:#{path}"
+#     sh "scp doc/images/*.png #{RUBYFORGE_USER}@rubyforge.org:#{path}/images"
+#   end
+# end
 
 # This task will run the unit tests provided in files called
 # `test/test*.rb`. The task itself can be run with a call to `rake test`

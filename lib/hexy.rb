@@ -2,6 +2,8 @@
 
 class Hexy
   
+  VERSION = '0.2.0'
+
   def self.dump bytes, config={}
     Hexy.new(bytes, config).to_s
   end
@@ -44,7 +46,7 @@ class Hexy
   #   puts p.to_s
   #            
   def initialize bytes, config = {}
-    @bytes     = bytes
+    @bytes     = bytes.force_encoding(Encoding::ASCII_8BIT)
     @width     = config[:width] || 16 
     @numbering = config[:numbering] == :none  ? :none : :hex_bytes
     @format = case config[:format]
@@ -63,8 +65,7 @@ class Hexy
   def to_s
     str = ""
     0.step(@bytes.length, @width) {|i|
-      string = @bytes[i,@width]
-
+      string = @bytes.byteslice(i,@width).force_encoding(Encoding::ASCII_8BIT)
       hex = string.unpack("H*")[0]
       hex.upcase! if @case == :upper
       
@@ -82,7 +83,8 @@ class Hexy
         }
       end
 
-      string.gsub!(/[\000-\040\177-\377]/, ".")
+      #string.gsub!(/[\000-\040\177-\377]/, ".")
+      string.gsub!(/[^\041-\176]/, ".")
       string.gsub!(/(.{#{@width/2}})/) { |m|
         m+" "
       }
