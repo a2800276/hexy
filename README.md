@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/a2800276/hexy.svg?branch=master)](https://travis-ci.org/a2800276/hexy)
 
-= hexy -- utility to create hex dumps 
+# hexy -- utility to create hex dumps 
 
 `hexy` is a ruby library that's easy to use to create hex dumps from 
 within your ruby scripts. It contains a number of options to configure
@@ -43,7 +43,7 @@ or even:
 with hexy!
    
 
-== Installing
+## Installing
 
 Having a "Installing" section is a bit of a chicken or egg question.
 Someone reading this README has, in all likelyhood already installed the
@@ -55,7 +55,7 @@ package.
 
 
 
-== Mail
+## Mail
 
 In case you discover bugs, spelling errors, offer suggestions for
 improvements or would like to help out with the project, you can contact
