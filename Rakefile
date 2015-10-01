@@ -88,6 +88,7 @@ spec = Gem::Specification.new do |s|
 	s.requirements << "none"
 	s.require_path = 'lib'
 	s.description = LONG_DESC
+  s.add_development_dependency("test-unit")
 end
 
 # Adding a new GemPackageTask adds a task named `package`, which generates
